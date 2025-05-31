@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title img src="../uploads/icons8-student-50.png">Info-tech</title>
+  
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'poppins', sans-serif;
+    }
+    nav {
+        width: 100%;
+        position: sticky !important;
+        left: 0;
+        top: 0;
+        box-shadow: 0px 5px 8px rgba(0,0,0,.5);
+        z-index: 10;
+    }
+    .navbar-brand {
+        font-weight: 600;
+    }
+    .nav-link {
+        color: white !important;
+        border-bottom: 1px solid transparent;
+    }
+    .nav-link:hover {
+        border-bottom: 2px solid red;
+    }
+    .card {
+        box-shadow: black;
+    }
+    .card-hover {
+        transition: transform 0.3s;
+    }
+    .card-hover:hover {
+        transform: scale(1.05);
+    }
+    .marquee {
+        background-color: #ff6b6b;
+        color: #fff;
+        padding: 15px;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .carousel-item img {
+        transition: transform 3s ease;
+        height: 475px;
+    }
+    .carousel-item:hover img {
+        transform: scale(1.05);
+    }
+    .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        padding: 10px;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('IT.jpg') center/cover no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        animation: fadeIn 3s;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    /* Navigation */
+    .navbar-nav .nav-link {
+        transition: color 0.3s;
+    }
+    .navbar-nav .nav-link:hover {
+        color: #f0ad4e;
+    }
+    
+    /* Departments */
+    .department-card {
+        background: linear-gradient(135deg, #6e45e2, #88d3ce);
+        color: white;
+        padding: 30px;
+        text-align: center;
+        border-radius: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        cursor: pointer;
+    }
+    .department-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Contact */
+    #contact p {
+        transition: color 0.5s;
+    }
+    #contact p:hover {
+        color: #007bff;
+        cursor: pointer;
+    }
+
+    .student-strength {
+        background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+        padding: 50px 0;
+    }
+    .text-gradient {
+        background: -webkit-linear-gradient(#ff512f, #dd2476);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .strength-box {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+    }
+    .strength-box:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        background: linear-gradient(135deg, #84fab0, #8fd3f4);
+        color: white;
+    }
+    .hover-effect {
+        transition: all 0.3s ease-in-out;
+    }
+    .hover-effect:hover {
+        transform: scale(1.1);
+    }
+
+    .achiever-box {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        cursor: pointer;
+    }
+    .achiever-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+    }
+    .achiever-box img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    .achiever-box .name {
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+        margin-top: 10px;
+    }
+    .achiever-box .details {
+        color: #666;
+    }
+    .btn-container {
+        margin-top: 10px;
+    }
+    #achivers {
+        background: #79ccd7;  /* Light mint cyan */
+        padding: 50px 0;
+    }
+
+    footer {
+        background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+        border-top: 3px solid #ffc107;
+    }
+    
+    footer a:hover {
+        color: #ffc107 !important;
+        text-decoration: underline !important;
+    }
+    
+    .social-icons a:hover {
+        transform: translateY(-3px);
+        transition: all 0.3s ease;
+    }
+    
+    footer h5 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+   <!--Navbar!-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="navbar">
+      <div class="container-fluid">
+      <a href="/views/tech.png" class="navbar-brand">T.D.M.N.S College <img src="./../uploads/tech.png"alt="" width="40" class="rounded-pill"/>  Information Technology</a>
+      <button class="navbar-toggler" type="button" title="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="menu">
+        <ul class="navbar-nav text-white ms-auto mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/About">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/login1">Stud-Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/sub-material">Sub-Material</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Img-gallery">Img-gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Contact">Contact</a></li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+    
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+        <div class="carousel-inner" id="carouselContainer">
+            <!-- Slides will be injected dynamically -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-success mt-3" onclick="addSlide()">Add New Slide</button>
+    </div>
+
+    <div class="container-fluid my-5" id="achivers">
+        <h1 class="text-center text-black font-weight-bold mb-4 p-4">🎓 Our Achievers 🎉</h1>
+        <div class="row" id="achieversContainer"></div>
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" onclick="addAchiever()">Add Achiever</button>
+        </div>
+    </div>
+
+    <section class="student-strength text-center">
+        <div class="container">
+            <h2 class="mb-5 text-gradient">Student Strength</h2>
+            <div class="row g-4" id="strengthContainer">
+                <!-- Content will be injected dynamically -->
+            </div>
+            <button class="btn btn-success mt-4 hover-effect" onclick="addStrength()">Add Strength</button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-4 pb-2">
+        <div class="container">
+            <div class="row">
+                <!-- Department Info -->
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-warning mb-3">Department of Information Technology</h5>
+                    <p class="small">
+                        <i class="bi bi-building me-2"></i> [TDMNS College]<br>
+                        [T.Kallikulam 627-113]<br>
+                        <i class="bi bi-telephone me-2"></i> [04637220250]<br>
+                        <i class="bi bi-envelope me-2"></i> tdmnscollege@gmail.com
+                    </p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-warning mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Img-gallery</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Stud-Details</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div class="col-lg-4 mb-4">
+                    <h5 class="text-warning mb-3">Connect With Us</h5>
+                    <div class="social-icons mb-3">
+                        <a href="#" title="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" title="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" title="#" class="text-white me-3"><i class="bi bi-linkedin fs-5"></i></a>
+                        <a href="#" title="#" class="text-white me-3"><i class="bi bi-youtube fs-5"></i></a>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="btn btn-outline-light btn-sm me-2">Newsletter</a>
+                        <a href="#" class="btn btn-outline-warning btn-sm">Contact</a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-3 bg-secondary">
+            
+            <!-- Copyright -->
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                    <p class="small mb-0">&copy; 2025 Department of Information Technology. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small mb-0">
+                        Developed by <span class="text-warning">Gopinath S</span>
+                    </p> 
+                    <p class="small mb-0">
+                        Gmail <span href="gopinaths204@gmail.com" class="text-warning">gopinaths204@gmail.com</span>
+                    <!-- Correct Gmail Link -->
+                    <a href="mailto:gopinaths204@gmail.com" title="Email us" class="text-white me-3">
+                        <i class="bi bi-envelope-fill fs-5"></i>
+                    </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize data from localStorage or with default values
+            let studentData = JSON.parse(localStorage.getItem("studentData")) || [
+                { year: "1st Year", batch: "2024-2027", total: 120, male: 60, female: 60 },
+                { year: "2nd Year", batch: "2023-2026", total: 110, male: 55, female: 55 },
+                { year: "3rd Year", batch: "2022-2025", total: 105, male: 50, female: 55 }
+            ];
+
+            let achieversData = JSON.parse(localStorage.getItem("achieversData")) || [{"name":"GOPINATH S","image":"https://images.pexels.com/photos/14997033/pexels-photo-14997033/free-photo-of-student-wearing-a-gown.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load","details":"University Rank Holder ,Gold medalist"},{"name":"Aravind","image":"https://bsmedia.business-standard.com/_media/bs/img/article/2024-08/11/full/1723371438-5385.jpg?im=FaceCrop,size=(826,465)","details":"Olympics Winner"}];
+            let sliderData = JSON.parse(localStorage.getItem("sliderData")) || [{"image":"https://images.pexels.com/photos/1595391/pexels-photo-1595391.jpeg?auto=compress&cs=tinysrgb&w=600","title":"GROUP DISCUSSION & ClASSROOM ACTIVITIES","description":"*Images of students engaging in group discussions.\n*\nDebates, brainstorming sessions, and collaborative learning."},{"image":"https://images.pexels.com/photos/1708912/pexels-photo-1708912.jpeg?auto=compress&cs=tinysrgb&w=600","title":"STAFF IN ACTION","description":"*Professors delivering lectures or mentoring students.\n*\nStaff members working on academic and research projects."},{"image":"https://images.pexels.com/photos/5539290/pexels-photo-5539290.jpeg?auto=compress&cs=tinysrgb&w=800&lazy=load","title":"LAB & PRACTICAL SESSION","description":"Students working on computers, electronics, or software projects.\n\nHands-on experiments in labs and research centers."}];
+
+            // Render all sections
+            renderStrength();
+            renderAchievers();
+            renderSlider();
+
+            // Strength Section Functions
+            function renderStrength() {
+                let container = document.getElementById("strengthContainer");
+                container.innerHTML = "";
+                studentData.forEach((data, index) => {
+                    container.innerHTML += `
+                        <div class="col-md-4 mb-4">
+                            <div class="strength-box p-3 border rounded bg-light shadow-sm">
+                                <p class="batch"><strong>Batch:</strong> ${data.batch}</p>
+                                <p class="year h5">${data.year}</p>
+                                <p class="strength"><strong>Total:</strong> ${data.total} Students</p>
+                                <p class="mb-1"><small>Male: ${data.male} | Female: ${data.female}</small></p>
+                                <div class="mt-2">
+                                    <button class="btn btn-sm btn-warning me-1" onclick="editEntry(${index})">Edit</button>
+                                    <button class="btn btn-sm btn-danger" onclick="requestDelete(event, ${index})">Delete</button>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            window.addStrength = function() {
+                let password = prompt("Enter Admin Password:");
+                if (password === "admin123") {
+                    let year = prompt("Enter Year (e.g., '1st Year'):");
+                    let batch = prompt("Enter Batch (e.g., '2024-2027'):");
+                    let total = prompt("Enter Total Students:");
+                    let male = prompt("Enter Male Students:");
+                    let female = prompt("Enter Female Students:");
+                    
+                    if (year && batch && total && male && female) {
+                        studentData.push({ year, batch, total, male, female });
+                        localStorage.setItem("studentData", JSON.stringify(studentData));
+                        renderStrength();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            window.editEntry = function(index) {
+                let password = prompt("Enter Admin Password:");
+                if (password === "admin123") {
+                    let newTotal = prompt("Enter Total Students:", studentData[index].total);
+                    let newMale = prompt("Enter Male Students:", studentData[index].male);
+                    let newFemale = prompt("Enter Female Students:", studentData[index].female);
+                    if (newTotal && newMale && newFemale) {
+                        studentData[index].total = newTotal;
+                        studentData[index].male = newMale;
+                        studentData[index].female = newFemale;
+                        localStorage.setItem("studentData", JSON.stringify(studentData));
+                        renderStrength();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            window.requestDelete = function(event, index) {
+                event.stopPropagation();
+                let password = prompt("Enter Admin Password to Delete:");
+                if (password === "admin123") {
+                    if (confirm(`Delete ${studentData[index].year} (${studentData[index].batch})?`)) {
+                        studentData.splice(index, 1);
+                        localStorage.setItem("studentData", JSON.stringify(studentData));
+                        renderStrength();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            // Achievers Section Functions
+            function renderAchievers() {
+                let container = document.getElementById("achieversContainer");
+                container.innerHTML = "";
+                achieversData.forEach((data, index) => {
+                    container.innerHTML += `
+                        <div class="col-md-4 mb-4">
+                            <div class="achiever-box animate-box">
+                                <img src="${data.image}" class="img-fluid" alt="${data.name}">
+                                <p class="name">${data.name}</p>
+                                <p class="details">${data.details}</p>
+                                <div class="btn-container">
+                                    <button class="btn btn-warning btn-sm" onclick="editAchiever(${index})">Edit</button>
+                                    <button class="btn btn-danger btn-sm" onclick="deleteAchiever(${index})">Delete</button>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            window.addAchiever = function() {
+                let password = prompt("Enter Staff Password:");
+                if (password === "admin123") {
+                    let name = prompt("Enter Name:");
+                    let image = prompt("Enter Image URL:");
+                    let details = prompt("Enter Details:");
+                    if (name && image && details) {
+                        achieversData.push({ name, image, details });
+                        localStorage.setItem("achieversData", JSON.stringify(achieversData));
+                        renderAchievers();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            window.editAchiever = function(index) {
+                let password = prompt("Enter Staff Password:");
+                if (password === "admin123") {
+                    let name = prompt("Edit Name:", achieversData[index].name);
+                    let image = prompt("Edit Image URL:", achieversData[index].image);
+                    let details = prompt("Edit Details:", achieversData[index].details);
+                    if (name && image && details) {
+                        achieversData[index] = { name, image, details };
+                        localStorage.setItem("achieversData", JSON.stringify(achieversData));
+                        renderAchievers();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            window.deleteAchiever = function(index) {
+                let password = prompt("Enter Staff Password:");
+                if (password === "admin123") {
+                    if (confirm("Are you sure you want to delete this achiever?")) {
+                        achieversData.splice(index, 1);
+                        localStorage.setItem("achieversData", JSON.stringify(achieversData));
+                        renderAchievers();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            // Slider Section Functions
+            function renderSlider() {
+                let container = document.getElementById("carouselContainer");
+                container.innerHTML = "";
+                sliderData.forEach((data, index) => {
+                    container.innerHTML += `
+                        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+                            <img src="${data.image}" class="d-block w-100" alt="${data.title}">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>${data.title}</h5>
+                                <p>${data.description}</p>
+                                <button class="btn btn-warning btn-sm" onclick="editSlide(${index})">Edit</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteSlide(${index})">Delete</button>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            window.addSlide = function() {
+                let password = prompt("Enter Staff Password:");
+                if (password === "admin123") {
+                    let image = prompt("Enter Image URL:");
+                    let title = prompt("Enter Title:");
+                    let description = prompt("Enter Description:");
+                    if (image && title && description) {
+                        sliderData.push({ image, title, description });
+                        localStorage.setItem("sliderData", JSON.stringify(sliderData));
+                        renderSlider();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            window.editSlide = function(index) {
+                let password = prompt("Enter Staff Password:");
+                if (password === "admin123") {
+                    let image = prompt("Edit Image URL:", sliderData[index].image);
+                    let title = prompt("Edit Title:", sliderData[index].title);
+                    let description = prompt("Edit Description:", sliderData[index].description);
+                    if (image && title && description) {
+                        sliderData[index] = { image, title, description };
+                        localStorage.setItem("sliderData", JSON.stringify(sliderData));
+                        renderSlider();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+
+            window.deleteSlide = function(index) {
+                let password = prompt("Enter Staff Password:");
+                if (password === "admin123") {
+                    if (confirm("Are you sure you want to delete this slide?")) {
+                        sliderData.splice(index, 1);
+                        localStorage.setItem("sliderData", JSON.stringify(sliderData));
+                        renderSlider();
+                    }
+                } else {
+                    alert("Incorrect password!");
+                }
+            };
+        });
+    </script>
+</body>
+</html>

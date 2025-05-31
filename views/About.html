@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Info-tech</title>
+  
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:'poppins',sans-serif;
+    }
+   body{
+    background-color: gray;
+   }
+    nav {
+        width: 100%;
+        position: sticky !important;
+        left: 0;
+        top: 0;
+        box-shadow: 0px 5px 8px rgba(0,0,0,.5);
+        z-index: 10;
+    }
+    .navbar-brand {
+        font-weight: 600;
+    }
+    .nav-link{
+        color:white !important;
+        border-bottom: 1px solid transparent;}
+.nav-link:hover{
+    border-bottom: 2px solid red;
+    
+}
+/* Hero Section Styling with Background Image */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: 
+    linear-gradient(135deg, rgba(73, 72, 74, 0.85) 0%, rgba(64, 60, 66, 0.85) 100%),
+    url('/uploads/IT.jpg') center/cover no-repeat;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 30%);
+  animation: pulse 15s infinite alternate;
+}
+
+/* Rest of your existing CSS remains the same */
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-section h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: fadeInDown 1s ease-out;
+  background: linear-gradient(to right, #fff 0%, #f9d423 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-section h5 {
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  animation: fadeInDown 1s ease-out;
+  background: linear-gradient(to right, #fff 0%, #f9d423 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-section h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  animation: fadeInUp 1s ease-out 0.3s forwards;
+  opacity: 0;
+  color: rgba(255,255,255,0.9);
+  
+}
+
+.hero-section h2::after {
+  content: 'Information Technology';
+  background: linear-gradient(45deg, #f6d365 0%, #fda085 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.hero-section .lead {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-out 0.6s forwards;
+  color: rgba(255,255,255,0.85);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-section .btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.9);
+  color: #6e48aa !important;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.9s forwards, bounce 2s infinite 2s;
+}
+
+.hero-section .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: 0.5s;
+}
+
+.hero-section .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  color: #9d50bb !important;
+}
+
+.hero-section .btn:hover::before {
+  left: 100%;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0.5; }
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-7px); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section h2 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-section .lead {
+    font-size: 1.2rem;
+  }
+  
+  .hero-section .btn {
+    padding: 12px 25px;
+  }
+}
+
+    
+    
+
+#hod-message{
+  background: linear-gradient(135deg, #eb4e10, #fbe70b);
+}
+
+
+    .hod-image {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.hod-image .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.hod-image:hover .overlay {
+    opacity: 1;
+}
+.edit-icon {
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #eb4e10;
+}
+.edit-icon:hover {
+    color: #fbe70b;
+}
+.animate-message {
+    animation: fadeIn 1s ease-in-out;
+}
+.animate-image {
+    animation: bounceIn 1.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounceIn {
+    0% { transform: scale(0.9); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+/* About Section Styling */
+#about {
+  background: linear-gradient(135deg, #ced8e7 0%, #070707 100%);
+  padding: 4rem 0;
+}
+
+#about .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#about h2 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+#about h2::after {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 4px;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
+  bottom: -10px;
+  left: 25%;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+#about h2:hover::after {
+  transform: scaleX(1);
+}
+
+#about .lead {
+  color: #34495e;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: justify;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out ;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+#about .lead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #3498db, #9b59b6);
+  transition: width 0.3s ease;
+}
+
+#about .lead:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+
+}
+
+#about .lead:hover::before {
+  width: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #about .lead {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+  
+  #about h2 {
+    font-size: 2rem;
+  }
+}
+
+
+
+
+
+
+.faculty-card {
+    position: relative;
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .faculty-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .faculty-img-container {
+    height: 250px;
+    overflow: hidden;
+  }
+  
+  .faculty-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .faculty-card:hover .faculty-img {
+    transform: scale(1.05);
+  }
+  
+  .faculty-info {
+    padding: 20px;
+    background: white;
+  }
+  
+  .faculty-bio {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .faculty-card:hover .faculty-bio {
+    transform: translateY(0);
+  }
+  
+  .faculty-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .faculty-card:hover .faculty-actions {
+    opacity: 1;
+  }
+
+   #staff{
+    background: linear-gradient(135deg, #81ccd4, #2d2b2589) !important;
+    padding:50px;
+   }
+
+
+
+
+   footer {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    border-top: 3px solid #ffc107;
+  }
+  
+  footer a:hover {
+    color: #ffc107 !important;
+    text-decoration: underline !important;
+  }
+  
+  .social-icons a:hover {
+    transform: translateY(-3px);
+    transition: all 0.3s ease;
+  }
+  
+  footer h5 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  .social-icons a {
+    transition: all 0.2s ease;
+  }
+  .social-icons a:hover {
+    color: #ea4335 !important; /* Gmail red */
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+   <!--Navbar!-->
+   
+     <!--Navbar!-->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="navbar">
+      <div class="container-fluid">
+      <a href="tech.png" class="navbar-brand">Information Technology <img src="/uploads/tech.png" alt="#" width="40" height="" class="rounded-pill"></a>
+      <button class="navbar-toggler" type="button" title="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="menu">
+        <ul class="navbar-nav text-white ms-auto mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/About">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/login1">Stud-Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/sub-material">Sub-Material</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Img-gallery">Img-gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Contact">Contact</a></li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+     
+   
+   
+      <!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="container text-center text-white">
+      <h1 class="display-3 mb-3">Welcome to Our Department</h1>
+      <h5 class="display-6 mb-4">Department of Information Technology</h5>
+      <p class="lead">Explore, Learn, and Achieve Excellence!</p>
+      <a href="#about" class="btn btn-light mt-4">Discover Departments</a>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="bg-light pb-4 my-5">
+  <div class="container text-center pb-4">
+      <h2 class="mb-4">About Us</h2>
+      <p class="lead">      Established in 2001, the department of Information Technology is the place to gain and share knowledge,
+         empowering people to learn from others and better understand the world.
+          The Department has four faculty members understanding the key trends 
+          will allow the students to prepare and grasp the opportunities. We take pride in our work whenever
+           there is a chance to work. We encourage the students to participate various events and competitions
+            conducting by other colleges. The students are maturing of autonomous driving technology in projects becomes 
+            a practical reality for most of us. During 2020 we will see wider adoption and growing pool of technology offering 
+            more applications and services for special tasks.</p>
+  </div>
+</section>
+
+
+
+  
+
+<section id="hod-message" class="py-5  my-5">
+  <div class="container mx-auto ">
+      <div class="row align-items-center">
+          <div class="col-lg-4 text-center">
+              <div class="hod-image position-relative">
+                  <img id="hodImg" src="/uploads/IT1.jpg" alt="HOD" class="img-fluid rounded-circle shadow-lg animate-image">
+                  <div class="overlay" onclick="showPasswordPrompt('image')">Edit</div>
+              </div>
+          </div>
+          <div class="col-lg-8">
+              <div class="hod-message p-4 bg-white rounded shadow-lg animate-message">
+                  <h2 class="mb-3 text-primary">Message from the HOD 
+                      <span class="edit-icon" onclick="showPasswordPrompt('message')">✎</span>
+                  </h2>
+                  <p id="hodMessage" class="lead"></p>
+                  <p>Our key focus areas include: 
+                      <span class="edit-icon" onclick="showPasswordPrompt('focusAreas')">✎</span>
+                  </p>
+                  <ul id="focusAreas"></ul>
+                  <div class="signature mt-3">
+                      <img id="signatureImg" src="/uploads/hod_signature.jpg" alt="Signature" class="img-fluid w-25 p-3" onclick="showPasswordPrompt('signature')">
+                      <p class="text-muted">
+                          <span id="hodName"></span> 
+                          <span class="edit-icon" onclick="showPasswordPrompt('name')">✎</span>
+                      </p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- Faculty & Staff Section -->
+<section id="staff" class="faculty-staff py-5 bg-light mt-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Faculty & Staff</h2>
+    
+    <!-- Add New Faculty Button -->
+    <div class="text-end mb-4">
+      <button class="btn btn-primary" onclick="showFacultyPasswordPrompt()">
+        <i class="bi bi-plus-circle"></i> Add Faculty
+      </button>
+    </div>
+    
+    <!-- Faculty Grid -->
+    <div class="row g-3 justify-content-center " id="facultyContainer">
+      <!-- Faculty cards will be inserted here by JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- Faculty Modal for Editing -->
+<div class="modal fade" id="facultyModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="facultyModalTitle">Edit Faculty</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="facultyForm">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" title="text"    class="form-control" id="facultyName" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Designation</label>
+              <input type="text" title="text"   class="form-control" id="facultyDesignation" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Qualifications</label>
+            <input type="text" title="text"    class="form-control" id="facultyQualifications" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Areas of Expertise</label>
+            <textarea class="form-control"  title="text"  id="facultyExpertise" rows="2" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Bio</label>
+            <textarea class="form-control" title="text"  id="facultyBio" rows="3" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Profile Image URL</label>
+            <input type="text" class="form-control" id="facultyImage" placeholder="https://example.com/image.jpg">
+          </div>
+          <input type="hidden" id="facultyIndex">
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" onclick="deleteFaculty()">Delete</button>
+        <button type="button" class="btn btn-primary" onclick="saveFaculty()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white pt-4 pb-2">
+  
+   
+  <hr class="my-3 bg-secondary">
+      
+      <!-- Copyright -->
+      <div class="row">
+        <div class="col-md-5 text-center text-md-start mb-2 mb-md-0">
+          <p class="small mb-0 ">&copy; 2025 Department of Information Technology. All rights reserved.</p>
+        </div>
+        <div class="col-sm text-center text-md-end">
+          <p class="small mb-0">
+            Developed by <span class="text-warning">Gopinath S</span>
+          </p> <p class="small mb-0">
+            Gmail <span href="gopinaths204@gmail.com" class="text-warning">gopinaths204@gmail.com</span>
+          <!-- Correct Gmail Link -->
+<a href="mailto:gopinaths204@gmail.com" title="Email us" class="text-white me-3">
+    <i class="bi bi-envelope-fill fs-5"></i>
+  </a>
+  </p>
+        </div>
+      </div>
+    </div>
+</footer>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Load saved values from localStorage
+    document.getElementById('hodImg').src = localStorage.getItem('hodImg') || "/uploads/IT1.jpg";
+    document.getElementById('hodMessage').innerText = localStorage.getItem('hodMessage') || 
+        "Welcome to the Department of Information Technology! We are committed to providing an industry-aligned curriculum and fostering a culture of innovation.";
+    document.getElementById('hodName').innerText = localStorage.getItem('hodName') || "Dr. John Doe";
+    document.getElementById('signatureImg').src = localStorage.getItem('signatureImg') || "/uploads/hod_signature.jpg";
+
+    let savedAreas = localStorage.getItem('focusAreas');
+    if (savedAreas) {
+        document.getElementById('focusAreas').innerHTML = JSON.parse(savedAreas).map(area => `<li>🔹 ${area}</li>`).join('');
+    } else {
+        document.getElementById('focusAreas').innerHTML = `
+            <li>🔹 Artificial Intelligence & Machine Learning</li>
+            <li>🔹 Cybersecurity & Ethical Hacking</li>
+            <li>🔹 Data Science & Analytics</li>
+            <li>🔹 Cloud Computing & IoT</li>`;
+    }
+});
+
+function showPasswordPrompt(field) {
+    let password = prompt("Enter Staff Password:");
+    if (password === "admin123") {
+        editField(field);
+    } else {
+        alert("Incorrect password!");
+    }
+}
+
+function editField(field) {
+    if (field === 'image') {
+        let newImage = prompt("Enter new HOD image URL:");
+        if (newImage) {
+            document.getElementById('hodImg').src = newImage;
+            localStorage.setItem('hodImg', newImage);
+        }
+    } else if (field === 'message') {
+        let newMessage = prompt("Edit HOD Message:", document.getElementById('hodMessage').innerText);
+        if (newMessage) {
+            document.getElementById('hodMessage').innerText = newMessage;
+            localStorage.setItem('hodMessage', newMessage);
+        }
+    } else if (field === 'focusAreas') {
+        let newAreas = prompt("Edit Focus Areas (comma separated):");
+        if (newAreas) {
+            let areaList = newAreas.split(',').map(item => item.trim());
+            document.getElementById('focusAreas').innerHTML = areaList.map(area => `<li>🔹 ${area}</li>`).join('');
+            localStorage.setItem('focusAreas', JSON.stringify(areaList));
+        }
+    } else if (field === 'name') {
+        let newName = prompt("Enter new HOD Name:", document.getElementById('hodName').innerText);
+        if (newName) {
+            document.getElementById('hodName').innerText = newName;
+            localStorage.setItem('hodName', newName);
+        }
+    } else if (field === 'signature') {
+        let newSignature = prompt("Enter new Signature image URL:");
+        if (newSignature) {
+            document.getElementById('signatureImg').src = newSignature;
+            localStorage.setItem('signatureImg', newSignature);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+// Faculty Data Management
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize faculty data
+  let facultyData = JSON.parse(localStorage.getItem("facultyData")) || [
+    {
+      name: "Dr. John Smith",
+      designation: "Professor",
+      qualifications: "PhD in Computer Science",
+      expertise: "Artificial Intelligence, Machine Learning",
+      bio: "Over 15 years of experience in AI research with numerous publications in top journals.",
+      image: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      name: "Prof. Sarah Johnson",
+      designation: "Associate Professor",
+      qualifications: "MS in Information Technology",
+      expertise: "Data Science, Big Data Analytics",
+      bio: "Specializes in data mining techniques and has led several industry projects.",
+      image: "https://randomuser.me/api/portraits/women/44.jpg"
+    }
+  ];
+
+  // Render all faculty members
+  function renderFaculty() {
+    let container = document.getElementById("facultyContainer");
+    container.innerHTML = "";
+    
+    facultyData.forEach((faculty, index) => {
+      container.innerHTML += `
+        <div class="col-md-4 col-lg-3">
+          <div class="faculty-card">
+            <div class="faculty-img-container">
+              <img src="${faculty.image || 'https://via.placeholder.com/300x250?text=Faculty'}" 
+                   alt="${faculty.name}" class="faculty-img">
+            </div>
+            <div class="faculty-info">
+              <h5>${faculty.name}</h5>
+              <p class="text-muted">${faculty.designation}</p>
+              <p><small>${faculty.qualifications}</small></p>
+              <p class="text-primary"><strong>${faculty.expertise.split(",")[0]}</strong></p>
+            </div>
+            <div class="faculty-bio">
+              <div>
+                <h5 class="text-white">${faculty.name}</h5>
+                <p>${faculty.bio}</p>
+                <p class="text-warning">Expertise: ${faculty.expertise}</p>
+              </div>
+            </div>
+            <div class="faculty-actions">
+              <button class="btn btn-sm btn-info" onclick="editFaculty(${index})">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+
+  // Show password prompt for faculty modifications
+  window.showFacultyPasswordPrompt = function() {
+    let password = prompt("Enter Admin Password:");
+    if (password === "admin123") {
+      showFacultyForm();
+    } else if (password !== null) {
+      alert("Incorrect password!");
+    }
+  }
+
+  // Show faculty form (for add/edit)
+  function showFacultyForm(index = null) {
+    const modal = new bootstrap.Modal(document.getElementById('facultyModal'));
+    const form = document.getElementById('facultyForm');
+    
+    if (index !== null) {
+      // Editing existing faculty
+      document.getElementById('facultyModalTitle').textContent = "Edit Faculty";
+      document.getElementById('facultyIndex').value = index;
+      
+      const faculty = facultyData[index];
+      document.getElementById('facultyName').value = faculty.name;
+      document.getElementById('facultyDesignation').value = faculty.designation;
+      document.getElementById('facultyQualifications').value = faculty.qualifications;
+      document.getElementById('facultyExpertise').value = faculty.expertise;
+      document.getElementById('facultyBio').value = faculty.bio;
+      document.getElementById('facultyImage').value = faculty.image || '';
+      
+      document.querySelector('#facultyModal .btn-danger').style.display = 'block';
+    } else {
+      // Adding new faculty
+      document.getElementById('facultyModalTitle').textContent = "Add New Faculty";
+      document.getElementById('facultyIndex').value = '';
+      form.reset();
+      document.querySelector('#facultyModal .btn-danger').style.display = 'none';
+    }
+    
+    modal.show();
+  }
+
+  // Save faculty data
+  window.saveFaculty = function() {
+    const index = document.getElementById('facultyIndex').value;
+    const faculty = {
+      name: document.getElementById('facultyName').value.trim(),
+      designation: document.getElementById('facultyDesignation').value.trim(),
+      qualifications: document.getElementById('facultyQualifications').value.trim(),
+      expertise: document.getElementById('facultyExpertise').value.trim(),
+      bio: document.getElementById('facultyBio').value.trim(),
+      image: document.getElementById('facultyImage').value.trim() || 'https://via.placeholder.com/300x250?text=Faculty'
+    };
+
+    // Validate inputs
+    if (!faculty.name || !faculty.designation || !faculty.qualifications || 
+        !faculty.expertise || !faculty.bio) {
+      alert("Please fill all required fields!");
+      return;
+    }
+
+    if (index !== '') {
+      // Update existing faculty
+      facultyData[index] = faculty;
+    } else {
+      // Add new faculty
+      facultyData.push(faculty);
+    }
+
+    // Save to localStorage and refresh
+    localStorage.setItem("facultyData", JSON.stringify(facultyData));
+    bootstrap.Modal.getInstance(document.getElementById('facultyModal')).hide();
+    renderFaculty();
+  }
+
+  // Edit faculty member
+  window.editFaculty = function(index) {
+    showFacultyPasswordPrompt();
+    if (facultyData[index]) {
+      showFacultyForm(index);
+    }
+  }
+
+  // Delete faculty member
+  window.deleteFaculty = function() {
+    const index = document.getElementById('facultyIndex').value;
+    if (index !== '' && confirm("Are you sure you want to delete this faculty member?")) {
+      facultyData.splice(index, 1);
+      localStorage.setItem("facultyData", JSON.stringify(facultyData));
+      bootstrap.Modal.getInstance(document.getElementById('facultyModal')).hide();
+      renderFaculty();
+    }
+  }
+
+  // Initial render
+  renderFaculty();
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - IT Department</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --it-primary: #2a3f54;
+            --it-secondary: #00b4d8;
+            --it-accent: #ff6b6b;
+            --it-light: #f8f9fa;
+            --it-dark: #212529;
+            --nav-bg: #1a2a3a;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--it-light);
+            color: var(--it-dark);
+            overflow-x: hidden;
+            padding-top: 70px; /* For fixed navbar */
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--nav-bg) !important;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover img {
+            transform: rotate(15deg);
+        }
+        
+        .nav-link {
+            color: white !important;
+            border-bottom: 2px solid transparent;
+            margin: 0 5px;
+            padding: 8px 15px !important;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255,255,255,0.1);
+            border-bottom-color: var(--it-secondary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--it-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        
+        .it-header {
+            background: linear-gradient(135deg, var(--it-primary), var(--nav-bg));
+            color: white;
+            padding: 5rem 0 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .it-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /><path fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" d="M0,50 Q25,25 50,50 T100,50" /></svg>');
+            background-size: 100px;
+            opacity: 0.3;
+        }
+        
+        .contact-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px;
+            border: none;
+            background: white;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .contact-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(42,63,84,0.1), rgba(0,180,216,0.1));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .contact-card:hover::after {
+            opacity: 1;
+        }
+        
+        .contact-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--it-secondary), var(--it-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover .contact-icon {
+            transform: scale(1.2);
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, var(--it-accent) 0%, transparent 70%);
+            filter: blur(30px);
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        .btn-it {
+            background: linear-gradient(135deg, var(--it-secondary), var(--it-primary));
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,180,216,0.3);
+        }
+        
+        .btn-it:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,180,216,0.4);
+            color: white;
+        }
+        
+        .btn-it::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-it:hover::before {
+            left: 100%;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .map-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .social-icon {
+            color: var(--it-primary);
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-icon:hover {
+            color: var(--it-accent);
+            transform: translateY(-5px) scale(1.2);
+        }
+        
+        .office-hours {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .office-hours:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .tech-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(circle at 10% 20%, var(--it-secondary) 0%, transparent 20%),
+                radial-gradient(circle at 90% 30%, var(--it-accent) 0%, transparent 20%),
+                radial-gradient(circle at 50% 80%, var(--it-primary) 0%, transparent 20%);
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--it-secondary);
+            box-shadow: 0 0 0 0.25rem rgba(0,180,216,0.25);
+        }
+        
+        .form-select {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .form-select:focus {
+            border-color: var(--it-secondary);
+            box-shadow: 0 0 0 0.25rem rgba(0,180,216,0.25);
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--it-primary), var(--nav-bg));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /><path fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5" d="M0,50 Q25,25 50,50 T100,50" /></svg>');
+            background-size: 100px;
+            opacity: 0.3;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            background: var(--it-secondary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-100vh) translateX(100px); }
+        }
+        
+        /* Navbar scroll effect */
+        .navbar.scrolled {
+            background-color: rgba(26, 42, 58, 0.9) !important;
+            -webkit-backdrop-filter: blur(10px); /* Safari */
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="navbar">
+        <div class="container-fluid">
+        <a href="tech.png" class="navbar-brand">T.D.M.N.S College <img src="./../uploads/tech.png" alt="#" width="40" height="" class="rounded-pill"></a>
+        <button class="navbar-toggler" type="button" title="button" data-bs-toggle="collapse" data-bs-target="#menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="menu">
+          <ul class="navbar-nav text-white ms-auto mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/About">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/login1">Stud-Details</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/sub-material">Sub-Material</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Img-gallery">Img-gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Contact">Contact</a></li>
+          </ul>
+        </div>
+        </div>
+      </nav>
+       
+
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles-js"></div>
+    <div class="tech-bg"></div>
+
+    <!-- Header Section -->
+    <header class="it-header text-center">
+        <div class="container position-relative" data-aos="fade-down" data-aos-duration="1000">
+            <h1 class="display-4 fw-bold mb-3"><i class="fas fa-laptop-code me-2 floating"></i> Department of Information Technology</h1>
+            <p class="lead fs-4">Let's Build the Future Together</p>
+            <div class="mt-4">
+                <div class="d-inline-block mx-2 pulse">
+                    <i class="fas fa-code text-white fs-1"></i>
+                </div>
+                <div class="d-inline-block mx-2 pulse">
+                    <i class="fas fa-server text-white fs-1"></i>
+                </div>
+                <div class="d-inline-block mx-2 pulse" >
+                    <i class="fas fa-robot text-white fs-1"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container position-relative">
+        <div class="row mb-5">
+            <!-- Contact Information -->
+            <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                <div class="contact-card card h-100 text-center p-4">
+                    <i class="contact-icon fas fa-map-marker-alt"></i>
+                    <h3 class="fw-bold">Our Location</h3>
+                    <p class="mb-0">Tirunelveli Dakshina Mara Nadar<br>
+                        Sangam College<br>
+                        T.Kallikulam, Tamilnadu<br>
+                        India - 627113</p>
+                    <div class="mt-3">
+                        <button class="btn btn-sm btn-it">Get Directions</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-card card h-100 text-center p-4">
+                    <i class="contact-icon fas fa-phone-alt"></i>
+                    <h3 class="fw-bold">Call Us</h3>
+                    <p class="mb-1">04637-220250 (Office)</p>
+                    <p class="mb-1">04637-220650 (Principal)</p>
+                    <p class="text-muted small">Mon-Fri: 8am-6pm</p>
+                    <div class="mt-2">
+                        <button class="btn btn-sm btn-it">Call Now</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4" data-aos="fade-left" data-aos-delay="300">
+                <div class="contact-card card h-100 text-center p-4">
+                    <i class="contact-icon fas fa-envelope"></i>
+                    <h3 class="fw-bold">Email Us</h3>
+                    <p class="mb-1">tdmnscollege@gmail.com</p>
+                    <!-- <p class="mb-1">admissions@itdepartment.edu</p>
+                    <p class="mb-1">support@itdepartment.edu</p> -->
+                    <div class="mt-2">
+                        <button class="btn btn-sm btn-it">Email Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-6 mb-4" data-aos="fade-right" data-aos-delay="400">
+                <div class="contact-form position-relative">
+                    <div class="position-absolute top-0 end-0 p-3">
+                        <i class="fas fa-paper-plane fs-1 text-muted opacity-25"></i>
+                    </div>
+                    <h2 class="mb-4 fw-bold"><i class="fas fa-comment-dots me-2"></i> Send us a message</h2>
+                    <form>
+                        <div class="mb-4">
+                            <label for="name" class="form-label fw-bold">Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-bold">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="subject" class="form-label fw-bold">Subject</label>
+                            <select class="form-select" id="subject">
+                                <option>General Inquiry</option>
+                                <option>Admission Questions</option>
+                                <option>Technical Support</option>
+                                <option>Career Opportunities</option>
+                                <option>Feedback/Suggestions</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label fw-bold">Your Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Type your message here..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-it w-100 py-3">
+                            <i class="fas fa-paper-plane me-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Map and Social Media -->
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="500">
+                <div class="map-container mb-4">
+                    <iframe id="myIframe" title="#" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d33845.038119695!2d77.60818552879493!3d8.370437333599714!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b046182a8c1dcc5%3A0x2aa64f45c7d0b4e8!2sT.D.M.N.S%20College%20%2C%20T.Kallikuzham!5e0!3m2!1sen!2sin!4v1743610929474!5m2!1sen!2sin" width="100%" height="350"></iframe>
+                    
+                </div>
+                
+                <div class="text-center mb-4" data-aos="zoom-in" data-aos-delay="600">
+                    <h3 class="fw-bold mb-4">Connect With Our Community</h3>
+                    <a href="#" title="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                    <a href="#" title="#"  class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="#"  class="social-icon"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" title="#"  class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="#"  class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#"  title="#" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="#"  title="#" class="social-icon"><i class="fab fa-discord"></i></a>
+                </div>
+                
+                <div class="office-hours" data-aos="fade-up" data-aos-delay="700">
+                    <h4 class="fw-bold text-center mb-3"><i class="fas fa-clock me-2"></i> Our Office Hours</h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-door-open text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Main Office</h6>
+                                    <small class="text-muted">8:00 AM - 6:00 PM</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="bg-success bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-headset text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Support</h6>
+                                    <small class="text-muted">24/7 Online</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-info bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-laptop-code text-info"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Lab Access</h6>
+                                    <small class="text-muted">7:00 AM - 10:00 PM</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
+                                    <i class="fas fa-book text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">Library</h6>
+                                    <small class="text-muted">8:00 AM - 9:00 PM</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 mt-5">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-4 mb-4" data-aos="fade-up">
+                    <h4 class="text-white fw-bold mb-4"><i class="fas fa-laptop-code me-2"></i> IT Department</h4>
+                    <p class="text-white-50">Innovating the future through technology education and research.</p>
+                    <div class="mt-4">
+                        <a href="#"  title="#"  class="social-icon text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" title="#"  class="social-icon text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="#"  class="social-icon text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="#"  class="social-icon text-white"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-white fw-bold mb-4">Quick Links</h4>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index1.html" class="text-white-50 text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="About.html" class="text-white-50 text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="http://127.0.0.1:3000/" class="text-white-50 text-decoration-none">Student Details</a></li>
+                        <li class="mb-2"><a href="sub-material.html" class="text-white-50 text-decoration-none">Study Materials</a></li>
+                        <li class="mb-2"><a href="Img-gallery.html" class="text-white-50 text-decoration-none">Gallery</a></li>
+                    </ul>
+                </div>
+               
+            <hr class="my-4 bg-white-50">
+            <div class="text-center text-white-50">
+                <p class="mb-0">&copy; 2023 Department of Information Technology. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+
+
+document.addEventListener("DOMContentLoaded", function() {
+        let iframe = document.getElementById("myIframe");
+        iframe.setAttribute("loading", "lazy");
+    });
+        // Initialize animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Create floating particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const particlesContainer = document.getElementById('particles-js');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                const color = `hsl(${Math.random() * 60 + 180}, 70%, 60%)`;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animationDuration = `${duration}s`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.background = color;
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Form submission animation
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Sending...';
+                    submitBtn.disabled = true;
+                    
+                    // Simulate form submission
+                    setTimeout(function() {
+                        submitBtn.innerHTML = '<i class="fas fa-check me-2"></i> Message Sent!';
+                        submitBtn.classList.remove('btn-it');
+                        submitBtn.classList.add('btn-success');
+                        
+                        // Reset form
+                        setTimeout(function() {
+                            form.reset();
+                            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i> Send Message';
+                            submitBtn.classList.add('btn-it');
+                            submitBtn.classList.remove('btn-success');
+                            submitBtn.disabled = false;
+                        }, 2000);
+                    }, 1500);
+                });
+            }
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    document.querySelector('.navbar').classList.add('scrolled');
+                } else {
+                    document.querySelector('.navbar').classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

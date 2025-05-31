@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration - InfoTech Department</title>
+    <link rel="icon" image="image/x-icon" href="icons8-student-50.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Add this to your head section -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swa");
+      nav {
+        width: 100%;
+        position: sticky !important;
+        left: 0;
+        top: 0;
+        box-shadow: 0px 5px 8px rgba(0,0,0,.5);
+        z-index: 10;
+    }
+    .navbar-brand {
+        font-weight: 600;
+    }
+    .nav-link{
+        color:white !important;
+        border-bottom: 1px solid transparent;}
+.nav-link:hover{
+    border-bottom: 2px solid red;
+    
+}
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .form-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        transform: translateY(0);
+        transition: all 0.3s ease;
+      }
+
+      .form-container:hover {
+        transform: translateY(-5px);
+      }
+
+      .form-header {
+        background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+        border-radius: 20px 20px 0 0;
+        padding: 2rem;
+        color: white;
+      }
+
+      .form-control:focus {
+        box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+        border-color: #4f46e5;
+      }
+
+      .upload-box {
+        border: 2px dashed #4f46e5;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      /* Add this new CSS class */
+      .upload-success {
+        border-color: #28a745 !important;
+        background-color: rgba(40, 167, 69, 0.1) !important;
+      }
+
+      * Add to existing styles */ .upload-success {
+        background-color: #d4edda !important;
+        border-color: #28a745 !important;
+        color: #155724;
+        transition: all 0.3s ease;
+      }
+
+      .file-name {
+        font-size: 0.9rem;
+        word-break: break-all;
+        margin-top: 0.5rem;
+      }
+
+      .upload-box:hover {
+        background: rgba(79, 70, 229, 0.1);
+        transform: scale(1.02);
+      }
+
+      .submit-btn {
+        background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+        border: none;
+        padding: 12px 30px;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 15px rgba(79, 70, 229, 0.3);
+      }
+
+      .admin-access {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body  >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="navbar">
+      <div class="container-fluid">
+      <a href="tech.png" class="navbar-brand">T.D.M.N.S College <img src="./../uploads/tech.png" alt="#" width="40" height="" class="rounded-pill"></a>
+      <button class="navbar-toggler" type="button" title="button" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="menu">
+        <ul class="navbar-nav text-white ms-auto mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/About">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/login1">Stud-Details</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/sub-material">Sub-Material</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Img-gallery">Img-gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Contact">Contact</a></li>
+        </ul>
+      </div>
+      </div>
+    </nav>
+  
+    <div class="container">
+      <div class="form-container">
+        <div class="form-header">
+          <h1 class="text-center mb-4">🎓 Student Registration Portal</h1>
+          <p class="text-center">InfoTech Department - Academic Year 2023-24</p>
+        </div>
+
+        <form id="studentForm" class="p-4" onsubmit="handleSubmit(event)">
+          <div class="row g-4">
+            <!-- Personal Details -->
+            <div class="col-md-6">
+              <input
+                type="number"
+                name="studentRollNo"
+                class="form-control mb-3"
+                placeholder="Student Roll No"
+                required
+              />
+              <input
+                type="text"
+                name="studentName"
+                class="form-control mb-3"
+                placeholder="Student Name"
+                required
+              />
+              <input
+                type="text"
+                name="fatherName"
+                class="form-control mb-3"
+                placeholder="Father's Name"
+                required
+              />
+              <input
+                type="text"
+                name="motherName"
+                class="form-control mb-3"
+                placeholder="Mother's Name"
+                required
+              />
+              <input
+                type="date"
+                name="dob"
+                class="form-control mb-3"
+                placeholder="Date of Birth"
+                required
+              />
+            </div>
+
+            <!-- Contact Details -->
+            <div class="col-md-6">
+              <input
+                type="number"
+                name="umisNumber"
+                class="form-control mb-3"
+                placeholder="UMIS Number"
+                required
+              />
+              <input
+                type="number"
+                name="studentPhone"
+                class="form-control mb-3"
+                placeholder="Student Phone Number"
+                required
+              />
+              <input
+                type="number"
+                name="parentPhone"
+                class="form-control mb-3"
+                placeholder="Parent Phone Number"
+                required
+              />
+              <textarea
+                name="address"
+                class="form-control mb-3"
+                rows="3"
+                placeholder="Address"
+                required
+              ></textarea>
+            </div>
+            <!-- Document Uploads -->
+            <div class="col-12">
+              <h4 class="mb-4 text-purple">📁 Upload Required Documents</h4>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    📸 Passport Size Photo
+                    <input
+                      type="file"
+                      name="passportPhoto"
+                      accept="image/*"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    📄 Aadhar Certificate
+                    <input
+                      type="file"
+                      name="aadharcertificate"
+                      accept=".pdf,.doc,.docx"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    💰 Income Certificate
+                    <input
+                      type="file"
+                      name="IncomeCertificate"
+                      accept=".pdf,.doc,.docx"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    👨‍🎓 Community Certificate
+                    <input
+                      type="file"
+                      name="CommunityCertificate"
+                      accept=".pdf,.doc,.docx"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    🧑‍🎓 Birth Certificate
+                    <input
+                      type="file"
+                      name="BirthCertificate"
+                      accept=".pdf,.doc,.docx"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    👨‍🎓Transfer Certificate
+                    <input
+                      type="file"
+                      name="transferCertificate"
+                      accept=".pdf,.doc,.docx"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="upload-box">
+                    🏴󠁴󠁨󠀱󠀲󠁿 📄12th Marksheet
+                    <input
+                      type="file"
+                      name="TwelethMark"
+                      accept=".pdf,.doc,.docx"
+                      class="d-none"
+                    />
+                  </label>
+                </div>
+                <!-- Add more document upload fields -->
+              </div>
+            </div>
+
+            <div class="col-12 text-center">
+              <button type="submit" class="btn submit-btn text-white px-5 py-2">
+                🚀 Submit Application
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Admin Access (Hidden by default) -->
+    <div class="admin-access" id="adminAccess">
+      <button class="btn btn-sm btn-warning" onclick="showAdminLogin()">
+        Staff Access
+      </button>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div class="modal fade" id="adminModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">🔒 Admin Login</h5>
+          </div>
+          <div class="modal-body">
+            <input
+              type="password"
+              id="adminPassword"
+              class="form-control mb-3"
+              placeholder="Enter Admin Password"
+            />
+            <button class="btn btn-success" onclick="checkAdminPassword()">
+              Access Records
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // async  function handleSubmit(e) {
+      //   e.preventDefault();
+      //   // Add form submission logic here
+      //   alert(
+      //     "Form submitted successfully! Data can only be viewed by authorized staff."
+      //   );
+      //   // e.target.reset();
+      //   // return false;
+      //   const formData = new FormData(e.target);
+      //   for (let [key, value] of formData.entries()) {
+      //     console.log(`🔹 ${key}:`, value);
+      //   }
+      //   const data = Object.fromEntries(formData.entries()); // Convert to JSON object
+      //   console.log("📤 Sending Form Data:", data);
+      //   // Ensure required fields are not empty before sending
+      //   if (
+      //     !data.studentRollNo ||
+      //     !data.studentName ||
+      //     !data.dob ||
+      //     !data.umisNumber ||
+      //     !data.studentPhone ||
+      //     !data.parentPhone ||
+      //     !data.address
+      //   ) {
+      //     alert("❌ Please fill in all required fields.");
+      //     return;
+      //   }
+      //   const response = await fetch("http://127.0.0.1:3000/register", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify(data),
+      //   });
+      //   console.log(response)
+      //   const result = await response.json();
+      //   alert(result.message || result.error);
+
+      //   if (response.ok) {
+      //     e.target.reset(); // Clear form on success
+      //   }
+      // }
+ 
+
+
+
+
+// // Replace your handleSubmit function with this:
+// async function handleSubmit(e) {
+//   e.preventDefault();
+//   const form = e.target;
+//   const formData = new FormData(form);
+//   const studentRollNo = formData.get('studentRollNo');
+
+//   // Validate required fields
+//   if (!studentRollNo || !formData.get('studentName') || !formData.get('dob') || 
+//       !formData.get('umisNumber') || !formData.get('studentPhone') || 
+//       !formData.get('parentPhone') || !formData.get('address')) {
+//     Swal.fire('Error', 'Please fill in all required fields', 'error');
+//     return;
+//   }
+
+//   // File validation
+//   const fileFields = [
+//     {name: 'passportPhoto', types: ['image/jpeg', 'image/png'], size: 1024, required: true},
+//     {name: 'aadharcertificate', types: ['application/pdf'], size: 1024, required: true},
+//     {name: 'IncomeCertificate', types: ['application/pdf'], size: 1024, required: true},
+//     {name: 'CommunityCertificate', types: ['application/pdf'], size: 1024, required: true},
+//     {name: 'BirthCertificate', types: ['application/pdf'], size: 1024, required: true},
+//     {name: 'transferCertificate', types: ['application/pdf'], size: 1024, required: true},
+//     {name: 'TwelethMark', types: ['application/pdf'], size: 1024, required: true}
+//   ];
+
+//   for (const field of fileFields) {
+//     const file = formData.get(field.name);
+//     if ((!file || file.size === 0) && field.required) {
+//       Swal.fire('Missing File', `${field.name.replace(/([A-Z])/g, ' $1')} is required`, 'error');
+//       return;
+//     }
+//     if (file && file.size > 0) {
+//       // Check file type
+//       if (!field.types.includes(file.type)) {
+//         Swal.fire('Invalid File', `Invalid file type for ${field.name}. Allowed: ${field.types.join(', ')}`, 'error');
+//         return;
+//       }
+      
+//       // Check file size (1MB limit)
+//       if (file.size > field.size * 1024) {
+//         Swal.fire('File Too Large', `${field.name} should be less than 1MB`, 'error');
+//         return;
+//       }
+//     }
+//   }
+
+//   try {
+//     // Show loading indicator
+//     Swal.fire({
+//       title: 'Uploading...',
+//       html: 'Please wait while we process your documents',
+//       allowOutsideClick: false,
+//       didOpen: () => {
+//         Swal.showLoading();
+//       }
+//     });
+
+//     // Send to server
+//     const response = await fetch("/register", {
+//       method: "POST",
+//       body: formData
+//     });
+    
+//     const result = await response.json();
+
+//     if (!response.ok) {
+//       throw new Error(result.error || 'Upload failed');
+//     }
+
+//     Swal.fire('Success', 'Registration submitted successfully!', 'success');
+//     form.reset();
+//     // Reset file upload displays
+//     document.querySelectorAll('.upload-box').forEach(box => {
+//       box.classList.remove('upload-success');
+//       const fileNameDisplay = box.querySelector('.file-name');
+//       if (fileNameDisplay) fileNameDisplay.remove();
+//     });
+//   } catch (error) {
+//     console.error("Submission error:", error);
+//     Swal.fire('Error', error.message || 'Submission failed. Please try again.', 'error');
+//   }
+// }
+
+
+
+
+// async function handleSubmit(e) {
+//   e.preventDefault();
+//   const form = e.target;
+  
+//   try {
+//     // Show loading indicator
+//     Swal.fire({
+//       title: 'Processing...',
+//       html: 'Please wait while we submit your information',
+//       allowOutsideClick: false,
+//       didOpen: () => {
+//         Swal.showLoading();
+//       }
+//     });
+
+//     // Convert form data to JSON (excluding files for now)
+//     const formData = new FormData(form);
+//     const jsonData = {};
+//     formData.forEach((value, key) => {
+//       // Only include non-file fields
+//       if (!['passportPhoto', 'aadharcertificate', 'IncomeCertificate', 
+//            'CommunityCertificate', 'BirthCertificate', 'transferCertificate', 
+//            'TwelethMark'].includes(key)) {
+//         jsonData[key] = value;
+//       }
+//     });
+
+//     // Send to server
+//     const response = await fetch("/register", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(jsonData)
+//     });
+
+//     // Handle response
+//     const textResponse = await response.text();
+//     let result;
+//     try {
+//       result = JSON.parse(textResponse);
+//     } catch {
+//       throw new Error(textResponse || 'Invalid server response');
+//     }
+
+//     if (!response.ok) {
+//       throw new Error(
+//         result.message || 
+//         result.error || 
+//         `Server responded with status ${response.status}`
+//       );
+//     }
+
+//     // Success handling
+//     Swal.fire({
+//       icon: 'success',
+//       title: 'Registration Successful!',
+//       text: result.message,
+//       willClose: () => {
+//         form.reset();
+//         // Reset file upload displays
+//         document.querySelectorAll('.upload-box').forEach(box => {
+//           box.classList.remove('upload-success');
+//           const fileNameDisplay = box.querySelector('.file-name');
+//           if (fileNameDisplay) fileNameDisplay.remove();
+//         });
+//       }
+//     });
+    
+//   } catch (error) {
+//     console.error("Submission error:", error);
+//     Swal.fire({
+//       icon: 'error',
+//       title: 'Submission Failed',
+//       text: error.message || 'An error occurred during submission',
+//       footer: 'Please check your information and try again'
+//     });
+//   }
+// }
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  
+  try {
+    // Show loading indicator
+    Swal.fire({
+      title: 'Processing...',
+      html: 'Uploading documents and saving information',
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading()
+    });
+
+    // Get student roll number for folder creation
+    const studentRollNo = form.studentRollNo.value;
+    if (!studentRollNo) {
+      throw new Error("Student Roll Number is required");
+    }
+
+    // Prepare form data with files
+    const formData = new FormData(form);
+    
+    // File fields configuration
+    const fileFields = [
+      'passportPhoto', 'aadharcertificate', 'IncomeCertificate',
+      'CommunityCertificate', 'BirthCertificate', 'transferCertificate', 'TwelethMark'
+    ];
+
+    // Validate files before upload
+    for (const field of fileFields) {
+      const file = formData.get(field);
+      if (file && file.size > 0) {
+        // Validate file size (1MB)
+        if (file.size > 1024 * 1024) {
+          throw new Error(`${field} exceeds 1MB limit`);
+        }
+        
+        // Validate file types
+        if (field === 'passportPhoto') {
+          if (!['image/jpeg', 'image/png'].includes(file.type)) {
+            throw new Error('Passport photo must be JPEG or PNG');
+          }
+        } else if (!['application/pdf'].includes(file.type)) {
+          throw new Error(`${field} must be a PDF file`);
+        }
+      }
+    }
+
+    // Send to backend
+    const response = await fetch("/register", {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await response.json();
+    
+    if (!response.ok) throw new Error(result.error || 'Registration failed');
+
+    // Success handling
+    Swal.fire({
+      icon: 'success',
+      title: 'Registration Successful!',
+      text: 'All documents uploaded successfully',
+      willClose: () => {
+        form.reset();
+        document.querySelectorAll('.upload-box').forEach(box => {
+          box.classList.remove('upload-success');
+          const fileNameDisplay = box.querySelector('.file-name');
+          if (fileNameDisplay) fileNameDisplay.remove();
+        });
+      }
+    });
+    
+  } catch (error) {
+    console.error("Submission error:", error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Submission Failed',
+      text: error.message || 'An error occurred during submission',
+      footer: 'Please check your information and try again'
+    });
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+      function showAdminLogin() {
+        new bootstrap.Modal(document.getElementById("adminModal")).show();
+      }
+
+      function checkAdminPassword() {
+        const password = document.getElementById("adminPassword").value;
+        // In real implementation, use secure server-side authentication
+        if (password === "2022info2025") {
+          alert("Access granted! Redirecting to records...");
+          window.location.href = "http://127.0.0.1:3000/list";
+          // Add redirection to admin view
+        } else {
+          alert("Invalid password! Access denied.");
+        }
+      }
+
+      // Add animation to form container on scroll
+      window.addEventListener("scroll", () => {
+        const form = document.querySelector(".form-container");
+        const scrollPosition = window.scrollY;
+        form.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+      });
+      // Add this JavaScript to handle file upload changes
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .querySelectorAll('.upload-box input[type="file"]')
+          .forEach((input) => {
+            input.addEventListener("change", function () {
+              const parentLabel = this.closest(".upload-box");
+              if (this.files && this.files.length > 0) {
+                parentLabel.classList.add("upload-success");
+              } else {
+                parentLabel.classList.remove("upload-success");
+              }
+            });
+          });
+      });
+
+      // Add this JavaScript after existing functions
+      document.querySelectorAll('input[type="file"]').forEach((input) => {
+        input.addEventListener("change", function (e) {
+          const label = this.closest(".upload-box");
+          const fileNameDisplay =
+            label.querySelector(".file-name") || document.createElement("span");
+
+          if (this.files.length > 0) {
+            // Add success styling
+            label.classList.add("upload-success");
+            // Create/show file name display
+            fileNameDisplay.className = "file-name d-block mt-1";
+            fileNameDisplay.textContent = this.files[0].name;
+            if (!label.contains(fileNameDisplay)) {
+              label.appendChild(fileNameDisplay);
+            }
+          } else {
+            // Remove success styling
+            label.classList.remove("upload-success");
+            fileNameDisplay.remove();
+          }
+        });
+      });
+      // document
+      //     .getElementById("studentForm")
+      //     .addEventListener("submit", async (e) => {
+      //         e.preventDefault();
+
+      //         // var data = new FormData(document.getElementById("studentForm"));
+      //         // data = data.entries();
+      //         // var obj = data.next();
+      //         // var retrieved = {};
+      //         // while (undefined !== obj.value) {
+      //         //     console.log('obj value',obj.value);
+      //         //     retrieved[obj.value[0]] = obj.value[1];
+      //         //     obj = data.next();
+      //         // }
+      //         // console.log("retrieved", retrieved);
+      //         const formData = new FormData(e.target);
+      //         for (let [key, value] of formData.entries()) {
+      //             console.log(`🔹 ${key}:`, value);
+      //         }
+      //         const data = Object.fromEntries(formData.entries()); // Convert to JSON object
+      //         console.log("📤 Sending Form Data:", data);
+      //         // Ensure required fields are not empty before sending
+      //         // if (
+      //         //     !retrieved.studentRollNo ||
+      //         //     !retrieved.studentName ||
+      //         //     !retrieved.dob ||
+      //         //     !retrieved.umisNumber ||
+      //         //     !retrieved.studentPhone ||
+      //         //     !retrieved.parentPhone ||
+      //         //     !retrieved.address
+      //         // ) {
+      //         //     alert("❌ Please fill in all required fields.");
+      //         //     return;
+      //         // }
+      //         try {
+      //             const response = await fetch("http://127.0.0.1:3000/register", {
+      //                 method: "POST",
+      //                 headers: { "Content-Type": "application/json" },
+      //                 body: JSON.stringify(data),
+      //             });
+
+      //             const result = await response.json();
+      //             alert(result.message || result.error);
+
+      //             if (response.ok) {
+      //                 e.target.reset(); // Clear form on success
+      //             }
+      //         } catch (error) {
+      //             console.error("❌ Submission error:", error);
+      //             alert("❌ Submission failed. Check the console.");
+      //         }
+      //     });
+      
+    </script>
+  </body>
+</html>

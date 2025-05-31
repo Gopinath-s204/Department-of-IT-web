@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Data Table</title>
+    
+    <!-- Bootstrap & DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+
+    <!-- jQuery, Bootstrap & DataTables Scripts -->
+     <!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .table thead th {
+            background:rgb(255, 208, 0);
+            color:#0b0b0b ;
+            border: none;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            transform: scale(1.02);
+            background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(139, 92, 246, 0.1));
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-icons i {
+            font-size: 20px;
+            margin-right: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-icons i:hover {
+            transform: scale(1.2);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+        }
+
+        .edit-mode {
+            border: 2px solid #007bff;
+            background-color: #e9f5ff;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(45deg, #4f46e5, #8b5cf6);
+            color: #fff;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .modal-body {
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+            .table thead {
+                display: none;
+            }
+
+            .table tbody tr {
+                display: block;
+                margin-bottom: 10px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .table tbody td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border: none;
+            }
+
+            .table tbody td::before {
+                content: attr(data-label);
+                font-weight: bold;
+                margin-right: 10px;
+            }
+
+            .file-icons {
+                justify-content: center;
+            }
+
+            .btn {
+                margin: 2px;
+            }
+        }
+
+
+
+
+
+
+        .modal-content {
+    background: linear-gradient(135deg, rgba(86, 85, 84, 0.971), rgba(119, 116, 116, 0.61));
+    
+    
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.modal-header {
+    background: #007bff;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-body p {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.modal-body strong {
+    color: #ffea00;
+}
+
+/* Hover Effects */
+.modal-body p:hover {
+    background: rgba(160, 157, 157, 0.364);
+    padding: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+/* Button Styling */
+.btn-close {
+    filter: invert(1);
+    transition: 0.3s;
+}
+
+.btn-close:hover {
+    transform: scale(1.1);
+}
+
+/* File Icons Section */
+.file-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.file-icons img {
+    width: 50px;
+    height: 50px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.file-icons img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+    /* Style for the floating lock button */
+.floating-lock {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.lock-button {
+  background-color: #7259b5;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.lock-button:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+.lock-button i:hover {
+  color: #000000;
+}
+
+.lock-button i {
+  font-size: 20px;
+  color: white;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📋 Student Registration Records</h2>
+    <div class="table-responsive">
+        <table id="studentTable" class="table table-striped">
+            <thead class="table-dark">
+                <tr tr data-id="${student.id}" data-father="${student.fathername}" data-mother="${student.mothername}" data-umis="${student.umisnumber}" data-student-number="${student.studentphone}" data-parent-number="${student.parentphone}" data-address="${student.address}">>
+                    <th>Stud Roll No</th>
+                    <th>Student Name</th>
+                    <th>Father Name</th>
+                    <th>Mother Name</th>
+                    <th>Date of Birth</th>
+                    <th>Documents</th>
+                    <th>Actions </th>
+                </tr>
+            
+       </thead>
+        </table>
+        <div class="floating-lock">
+            <!-- <button title="Admin Access" class="lock-button" id="staff-login-btn">
+              <i class="fas fa-solid fa-lock"></i> 
+            </button> -->
+            <button title="Lock Admin Access" class="lock-button" id="staff-logout-btn">
+                <a href="http://127.0.0.1:3000"><i class="fas fa-solid fa-lock-open"></i></a>
+            </button>
+          </div>
+<!-- View Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Student Details</h5>
+                <button type="button" title="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-white">
+                <p><strong>Student ID:</strong> <span id="modal-id"></span></p>
+                <p><strong>Full Name:</strong> <span id="modal-name"></span></p>
+                <p><strong>Email:</strong> <span id="modal-email"></span></p>
+                <p><strong>Birthdate:</strong> <span id="modal-dob"></span></p>
+                <hr>
+                <p><strong>Father Name:</strong> <span id="modal-father"></span></p>
+                <p><strong>Mother Name:</strong> <span id="modal-mother"></span></p>
+                <p><strong>UMIS Number:</strong> <span id="modal-umis"></span></p>
+                <p><strong>Student Number:</strong> <span id="modal-student-number"></span></p>
+                <p><strong>Parent Number:</strong> <span id="modal-parent-number"></span></p>
+                <p><strong>Address:</strong> <span id="modal-address"></span></p>
+                <hr>
+                <p><strong>Documents:</strong></p>
+                <div id="modal-documents" class="file-icons">
+                    <p><strong>Passport Photo:</strong> 
+                        <a id="modal-passportPhoto" href="#" target="_blank" class="btn btn-danger btn-sm">View</a>
+                    </p>
+                    <p><strong>Aadhar Certificate:</strong> 
+                        <a id="modal-aadharcertificate" href="#" target="_blank" class="btn btn-warning btn-sm">View</a>
+                    </p>
+                    <p><strong>Income Certificate:</strong> 
+                        <a id="modal-IncomeCertificate" href="#" target="_blank" class="btn btn-success btn-sm">View</a>
+                    </p>
+                    <p><strong>Community Certificate:</strong> 
+                        <a id="modal-CommunityCertificate" href="#" target="_blank" class="btn btn-danger btn-sm">View</a>
+                    </p>
+                    <p><strong>Birth Certificate:</strong> 
+                        <a id="modal-BirthCertificate" href="#" target="_blank" class="btn btn-warning btn-sm">View</a>
+                    </p>
+                    <p><strong>Transfer Certificate:</strong> 
+                        <a id="modal-transferCertificate" href="#" target="_blank" class="btn btn-success btn-sm">View</a>
+                    </p>
+                    <p><strong>12th Marksheet:</strong> 
+                        <a id="modal-TwelethMark" href="#" target="_blank" class="btn btn-info btn-sm">View</a>
+                    </p>
+                </div>      
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title">Edit Student Details</h5>
+                <button title="#" type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="edit-id">
+                <div class="mb-3">
+                    <label class="form-label text-warning">Student Name</label>
+                    <input title="#" type="text" class="form-control" id="edit-name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">Father's Name</label>
+                    <input title="#" type="text" class="form-control" id="edit-father">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">Mother's Name</label>
+                    <input title="#" type="text" class="form-control" id="edit-mother">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">Date of Birth</label>
+                    <input title="#" type="date" class="form-control" id="edit-dob">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">UMIS Number</label>
+                    <input title="#" type="text" class="form-control" id="edit-umis">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">Student Phone</label>
+                    <input title="#" type="text" class="form-control" id="edit-student-number">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">Parent Phone</label>
+                    <input title="#" type="text" class="form-control" id="edit-parent-number">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-warning">Address</label>
+                    <textarea title="#" class="form-control" id="edit-address" rows="3"></textarea>
+                </div>
+            </div>
+
+
+
+            <!--footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-success" id="save-edit-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+
+function viewDetails(element) {
+    // console.log('element',element);
+    // console.log(element.studentrollno);
+    $("#modal-id").text(element.studentrollno);
+    $("#modal-name").text(element.studentname);
+    $("#modal-dob").text(element.dob);
+    $("#modal-father").text(element.fathername);
+    $("#modal-mother").text(element.mothername);
+    $("#modal-umis").text(element.umisnumber);
+    $("#modal-student-number").text(element.studentphone);
+    $("#modal-parent-number").text(element.parentphone);
+    $("#modal-address").text(element.address);
+      $("#modal-passportPhoto").attr(
+        "href",
+        `/uploads/${element.passportPhoto}`
+      );
+      $("#modal-aadharcertificate").attr(
+        "href",
+        `/uploads/${element.aadharcertificate}`
+      );
+      $("#modal-IncomeCertificate").attr(
+        "href",
+        `/uploads/${element.IncomeCertificate}`
+      );
+      $("#modal-CommunityCertificate").attr(
+        "href",
+        `/uploads/${element.CommunityCertificate}`
+      );
+      $("#modal-BirthCertificate").attr(
+        "href",
+        `/uploads/${element.BirthCertificate}`
+      );
+      $("#modal-transferCertificate").attr(
+        "href",
+        `/uploads/${element.transferCertificate}`
+      );
+      $("#modal-TwelethMark").attr(
+        "href",
+        `/uploads/${element.TwelethMark}`
+      );
+    $("#viewModal").modal("show");
+}
+
+function editDetails(element) {
+    // console.log('element',element);
+    // console.log(element.studentrollno);
+     // Populate edit modal (you'll need to create this)
+    $('#edit-id').val(element.studentrollno);
+    $('#edit-name').val(element.studentname);
+    $('#edit-father').val(element.fathername);
+    $('#edit-mother').val(element.mothername);
+    $('#edit-dob').val(element.dob);
+    $('#edit-umis').val(element.umisnumber);
+    $('#edit-student-number').val(element.studentphone);
+    $('#edit-parent-number').val(element.parentphone);
+    $('#edit-address').val(element.address);
+    $('#editModal').modal('show');
+}
+
+$(document).ready(function () {
+    // Initialize DataTable
+    let student1Table = $('#studentTable').DataTable({
+        "paging": true,          // Enable pagination
+        "searching": true,       // Enable search bar
+        "ordering": true,        // Enable sorting
+        "info": true,            // Show table info
+        "lengthMenu": [5, 10, 25, 50],  // Entries per page
+        "language": {
+            "search": "🔍 Search: " // Custom search box text
+        }
+    });
+    //     // Extend default search function to include data attributes
+    //     $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+    //         var row = student1Table.row(dataIndex).node();
+    //         var department = $(row).data('umisnumber');
+    //     let searchValue = $('#studentTable_filter input').val().toLowerCase();
+    //     // let row = $('#studentTable tbody tr').eq(dataIndex);
+
+    //     // Get text from all visible cells
+    //     let rowText = row.text().toLowerCase();
+
+    //     // Get text from all data-* attributes
+    //     // let rowDataAttrs = Object.values(row.data()).join(" ").toLowerCase();
+
+    //     return rowText.includes(department) || rowDataAttrs.includes(searchValue);
+    // });
+
+    // // Trigger search when input is typed
+    // $('#studentTable_filter input').on('keyup', function () {
+    //     student1Table.draw();
+    // });
+    
+    
+    // Load students function
+    function loadStudents() {
+        $.ajax({
+            url: 'http://127.0.0.1:3000/api/students',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                student1Table.clear();
+                data.forEach(student => {
+                    var stringifiedObj = JSON.stringify(student);
+                    let newRow = $(`
+                        <tr data-id="${student.studentrollno}" 
+                            data-father="${student.fathername}" 
+                            data-mother="${student.mothername}" 
+                            data-umis="${student.umisnumber}" 
+                            data-student-number="${student.studentphone}" 
+                            data-parent-number="${student.parentphone}" 
+                            data-address="${student.address}">
+                            <td>${student.studentrollno}</td>
+                            <td>${student.studentname}</td>
+                            <td>${student.fathername}</td>
+                            <td>${student.mothername}</td>
+                            <td>${student.dob}</td>
+                            <td>
+                                <i class="fas fa-file-pdf text-danger"></i> 
+                                <i class="fas fa-file-word text-primary"></i> 
+                                <i class="fas fa-file-image text-success"></i>
+                            </td>
+                            <td>
+                                <button class="btn btn-info btn-sm view-btn" onClick='viewDetails(${stringifiedObj})'><i class="far fa-eye"></i></button>
+                                <button class="btn btn-warning btn-sm edit-btn" onClick='editDetails(${stringifiedObj})'>✏️</button>
+                                <button class="btn btn-danger btn-sm delete-btn">🗑️</button>
+                            </td>
+                        </tr>
+                    `);
+                    student1Table.row.add(newRow).draw();
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching students:', error);
+            }
+        });
+    }
+
+    // Save edited student
+    $('#save-edit-btn').click(function() {
+        let rollNo = $('#edit-id').val();
+        let updatedData = {
+            studentName: $('#edit-name').val(),
+            fatherName: $('#edit-father').val(),
+            motherName: $('#edit-mother').val(),
+            dob: $('#edit-dob').val(),
+            umisNumber: $('#edit-umis').val(),
+            studentPhone: $('#edit-student-number').val(),
+            parentPhone: $('#edit-parent-number').val(),
+            address: $('#edit-address').val()
+        };
+
+        $.ajax({
+            url: `http://127.0.0.1:3000/api/students/${rollNo}`,
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(updatedData),
+            success: function(response) {
+                if(response.success) {
+                    $('#editModal').modal('hide');
+                    loadStudents(); // Refresh the table
+                    Swal.fire('Success', 'Student updated successfully!', 'success');
+                }
+            },
+            error: function(xhr) {
+                Swal.fire('Error', 'Failed to update student', 'error');
+            }
+        });
+    });
+
+
+
+
+
+        // Delete student record - Fixed version
+        $(document).on('click', '.delete-btn', function() {
+        let row = $(this).closest('tr');
+        let rollNo = row.find('td:nth-child(1)').text().trim();
+        let studentName = row.find('td:nth-child(2)').text().trim();
+
+        Swal.fire({
+            title: 'Confirm Delete',
+            text: `Are you sure you want to delete ${studentName} (Roll No: ${rollNo})?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `http://127.0.0.1:3000/api/students/${encodeURIComponent(rollNo)}`,
+                    type: 'DELETE',
+                    dataType: 'json',
+                    success: function(response) {
+                        if(response && response.success) {
+                            Swal.fire(
+                                'Deleted!',
+                                response.message || 'Student has been deleted.',
+                                'success'
+                            );
+                            // Remove the row from DataTable
+                            student1Table.row(row).remove().draw();
+                        } else {
+                            Swal.fire(
+                                'Error',
+                                response.error || 'Failed to delete student',
+                                'error'
+                            );
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        let errorMsg = 'Failed to delete student';
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            errorMsg = response.error || response.message || errorMsg;
+                        } catch(e) {
+                            console.error('Error parsing response:', e);
+                        }
+                        Swal.fire('Error', errorMsg, 'error');
+                    }
+                });
+            }
+        });
+    });
+
+    // Load students on page load
+    loadStudents();
+});
+
+</script>
+
+</body>
+</html>
