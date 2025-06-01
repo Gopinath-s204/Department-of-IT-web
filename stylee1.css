@@ -1,0 +1,116 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'poppins',sans-serif;
+}
+nav {
+    width: 100%;
+    position: sticky !important;
+    left: 0;
+    top: 0;
+    box-shadow: 0px 5px 8px rgba(0,0,0,.5);
+    z-index: 10;
+}
+.navbar-brand {
+    font-weight: 600;
+}
+.nav-link{
+    color:white !important;
+    border-bottom: 1px solid transparent;
+
+}
+.nav-link:hover{
+    border-bottom: 2px solid red;
+    
+}
+.card{
+    box-shadow: black;                          
+    
+}
+
+.card-hover {
+    transition: transform 0.3s;
+}
+.card-hover:hover {
+    transform: scale(1.05);
+}
+.marquee {
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+.carousel-item img {
+    transition: transform 3s ease;
+    height: 475px;
+}
+.carousel-item:hover img {
+    transform: scale(1.05);
+}
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('IT.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Navigation */
+.navbar-nav .nav-link {
+    transition: color 0.3s;
+}
+.navbar-nav .nav-link:hover {
+    color: #f0ad4e;
+}
+
+/* Departments */
+.department-card {
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    color: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+.department-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact */
+#contact p {
+    transition: color 0.5s;
+}
+#contact p:hover {
+    color: #007bff;
+    cursor: pointer;
+}

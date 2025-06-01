@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 Study Materials – IT Department</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js" defer></script>
+    <style>
+        body { 
+            background: linear-gradient(135deg, #667eea, #764ba2); 
+            font-family: 'Arial', sans-serif; 
+            color: white;
+        }
+        nav {
+            width: 100%;
+            position: sticky !important;
+            left: 0;
+            top: 0;
+            box-shadow: 0px 5px 8px rgba(0,0,0,.5);
+            z-index: 10;
+        }
+        .navbar-brand {
+            font-weight: 600;
+        }
+        .nav-link{
+            color:white !important;
+            border-bottom: 1px solid transparent;
+        }
+        .nav-link:hover{
+            border-bottom: 2px solid red;
+        }
+        h2 { color: #ffeb3b; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+        .upload-section, #subject-section, #files-section { display: none; }
+        .btn { transition: 0.3s; }
+        .btn:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+  
+    <!--Navbar!-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white " id="navbar">
+        <div class="container-fluid ">
+        <a  href="tech.png" class="navbar-brand ">Information Technology <img src="tech.png" alt="#" width="40" height="" class="rounded-pill" > </a>
+        <button class="navbar-toggler" title="button"  type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="menu">
+            <ul class="navbar-nav text-white ms-auto mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index1.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="About.html">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Stud-Details</a></li>
+            <li class="nav-item"><a class="nav-link" href="sub-material.html">Sub-Material</a></li>
+            <li class="nav-item"><a class="nav-link" href="Img-gallery.html">Img-gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="Contact.html">Contact</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="text-center">📚 Study Materials – IT Department</h2>
+        <button class="btn btn-warning mt-3" id="upload-btn">🔒 Staff Upload</button>
+        
+        <div class="upload-section mt-3">
+            <label for="year-select" class="form-label">Select Year:</label>
+            <select class="form-control mb-2" id="year-select">
+                <option value="">-- Select Year --</option>
+                <option value="1st">1st Year</option>
+                <option value="2nd">2nd Year</option>
+                <option value="3rd">3rd Year</option>
+            </select>
+            
+            <label for="subject-input" class="form-label">Enter Subject Name:</label>
+            <input type="text" class="form-control mb-2" id="subject-input" placeholder="Enter subject name">
+            
+            <label for="file-upload" class="form-label">Choose File (PDF, Image, Video):</label>
+            <input type="file" class="form-control mb-2" id="file-upload" accept=".pdf,.jpg,.png,.mp4">
+            
+            <button class="btn btn-success" id="upload-file">Upload</button>
+        </div>
+        
+        <div class="mt-4">
+            <label for="year-view-select" class="form-label">Select Year to View Materials:</label>
+            <select class="form-control mb-2" id="year-view-select">
+                <option value="">-- Select Year --</option>
+                <option value="1st">1st Year</option>
+                <option value="2nd">2nd Year</option>
+                <option value="3rd">3rd Year</option>
+            </select>
+        </div>
+        
+        <div id="subject-section">
+            <h4>Subjects</h4>
+            <ul id="subject-list" class="list-group"></ul>
+        </div>
+
+        <div id="files-section">
+            <h4>Files</h4>
+            <ul id="files-list" class="list-group"></ul>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let isStaffAuthenticated = false;
+
+            // Toggle upload section with password protection
+            $("#upload-btn").click(function () {
+                if (!isStaffAuthenticated) {
+                    let password = prompt("Enter Password to Access Upload Section:");
+                    if (password === "staff123") {
+                        isStaffAuthenticated = true;
+                        $(".upload-section").toggle();
+                    } else {
+                        alert("Access Denied!");
+                        return;
+                    }
+                } else {
+                    $(".upload-section").toggle();
+                }
+            });
+
+            // Handle file upload
+            // $("#upload-file").click(function () {
+            //     let file = $("#file-upload")[0].files[0];
+            //     let year = $("#year-select").val();
+            //     let subject = $("#subject-input").val().trim();
+                
+            //     if (!file) {
+            //         alert("Please select a file!");
+            //         return;
+            //     }
+                
+            //     if (!year) {
+            //         alert("Please select a year!");
+            //         return;
+            //     }
+                
+            //     if (!subject) {
+            //         alert("Please enter a subject name!");
+            //         return;
+            //     }
+
+            //     let formData = new FormData();
+            //     formData.append("file", file);
+            //     formData.append("year", year);
+            //     formData.append("subject", subject);
+
+            //     $.ajax({
+            //         url: "http://127.0.0.1:3000/api/upload/materials",
+            //         type: "POST",
+            //         data: formData,
+            //         processData: false,
+            //         contentType: false,
+            //         success: function(response) {
+            //             alert(response.message || "File uploaded successfully!");
+            //             $("#file-upload").val("");
+            //             $("#subject-input").val("");
+            //         },
+            //         error: function(xhr) {
+            //             let errorMsg = xhr.responseJSON?.error || "Failed to upload file";
+            //             alert("Error: " + errorMsg);
+            //         }
+            //     });
+            // });
+
+
+            $("#upload-file").click(function() {
+  const formData = new FormData();
+  formData.append('file', $('#file-upload')[0].files[0]);
+  formData.append('year', $('#year-select').val());
+  formData.append('subject', $('#subject-input').val());
+
+  $.ajax({
+    url: 'http://localhost:3000/api/upload/materials',
+    type: 'POST',
+    data: formData,
+    contentType: false, // Crucial for FormData
+    processData: false, // Crucial for FormData
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest'
+    },
+    success: function(response) {
+      alert(response.message);
+      $('#file-upload').val(''); // Clear file input
+    },
+    error: function(xhr) {
+      alert('Error: ' + (xhr.responseJSON?.error || 'Upload failed'));
+    }
+  });
+});
+            // Load subjects when year is selected
+            $("#year-view-select").change(function () {
+                let year = $(this).val();
+                if (year) {
+                    loadSubjects(year);
+                } else {
+                    $("#subject-section").hide();
+                    $("#files-section").hide();
+                }
+            });
+
+            // Function to load subjects for a year
+            function loadSubjects(year) {
+                $.ajax({
+                    url: `http://127.0.0.1:3000/api/subjects/${year}`,
+                    type: "GET",
+                    success: function(subjects) {
+                        let subjectList = $('#subject-list');
+                        subjectList.empty();
+                        
+                        if (subjects.length === 0) {
+                            subjectList.append('<li class="list-group-item">No subjects found for this year</li>');
+                        } else {
+                            subjects.forEach(function(subject) {
+                                subjectList.append(
+                                    `<li class="list-group-item subject-item" 
+                                        data-subject="${subject}" 
+                                        data-year="${year}">
+                                        ${subject}
+                                    </li>`
+                                );
+                            });
+                        }
+                        $("#subject-section").show();
+                        $("#files-section").hide();
+                    },
+                    error: function(xhr) {
+                        alert("Failed to load subjects: " + (xhr.responseJSON?.error || "Server error"));
+                    }
+                });
+            }
+
+            // Load files when subject is clicked
+            $(document).on("click", ".subject-item", function () {
+                let subject = $(this).data("subject");
+                let year = $(this).data("year");
+                
+                $.ajax({
+                    url: `http://127.0.0.1:3000/api/files/${year}/${subject}`,
+                    type: "GET",
+                    success: function(files) {
+                        let filesList = $('#files-list');
+                        filesList.empty();
+                        
+                        if (files.length === 0) {
+                            filesList.append('<li class="list-group-item">No files found for this subject</li>');
+                        } else {
+                            files.forEach(function(file) {
+                                filesList.append(
+                                    `<li class="list-group-item">
+                                        <a href="http://127.0.0.1:3000/uploads/${year}/${subject}/${file}" 
+                                           target="_blank" 
+                                           class="text-decoration-none">
+                                            ${file}
+                                        </a>
+                                    </li>`
+                                );
+                            });
+                        }
+                        $("#files-section").show();
+                    },
+                    error: function(xhr) {
+                        alert("Failed to load files: " + (xhr.responseJSON?.error || "Server error"));
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
