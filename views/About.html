@@ -21,24 +21,152 @@
    body{
     background-color: gray;
    }
-    nav {
-        width: 100%;
-        position: sticky !important;
-        left: 0;
-        top: 0;
-        box-shadow: 0px 5px 8px rgba(0,0,0,.5);
-        z-index: 10;
+   /* Vibrant Gradient Navbar with Unique Animations */
+    #vibrant-navbar {
+    background: black !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  #vibrant-navbar.scrolled {
+    background: linear-gradient(135deg, #454242 0%, #15151235 80%) !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  
+  /* Logo Animation */
+  .glow-on-hover:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  
+  .logo-main {
+    font-weight: 700;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .logo-sub {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-brand:hover .logo-main {
+    transform: translateX(-3px);
+    color: #ffcc00;
+  }
+  
+  .navbar-brand:hover .logo-sub {
+    transform: translateX(3px);
+    color: #fff;
+  }
+  
+  .logo-spin {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    margin: 0 10px;
+  }
+  
+  .navbar-brand:hover .logo-spin {
+    transform: rotate(360deg) scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+  }
+  
+  /* Bubble Animation for Links */
+  .bubble-animation {
+    position: relative;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 30px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+  }
+  
+  .bubble-animation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    transform: scale(0);
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+  
+  .bubble-animation:hover {
+    color: #fff !important;
+    transform: translateY(-3px);
+  }
+  
+  .bubble-animation:hover::before {
+    transform: scale(1);
+  }
+  
+  .nav-icon {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    margin-right: 8px;
+  }
+  
+  .bubble-animation:hover .nav-icon {
+    transform: rotate(15deg) scale(1.2);
+    color: #ffcc00 !important;
+  }
+  
+  /* Mobile Toggler Animation */
+  .pulse-animation {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  }
+  
+  /* Mobile Menu Animation */
+  @media (max-width: 992px) {
+    #menu {
+      background: rgba(106, 17, 203, 0.95);
+      border-radius: 0 0 15px 15px;
+      padding: 15px;
+      animation: slideIn 0.5s ease-out forwards;
     }
-    .navbar-brand {
-        font-weight: 600;
-    }
-    .nav-link{
-        color:white !important;
-        border-bottom: 1px solid transparent;}
-.nav-link:hover{
-    border-bottom: 2px solid red;
     
-}
+    .bubble-animation {
+      margin-bottom: 10px;
+      text-align: center;
+      padding: 12px 20px;
+    }
+    
+    .nav-item {
+      opacity: 0;
+      animation: bounceIn 0.6s ease-out forwards;
+    }
+    
+    .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    .nav-item:nth-child(5) { animation-delay: 0.5s; }
+    .nav-item:nth-child(6) { animation-delay: 0.6s; }
+  }
+  
+  @keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes bounceIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+  }
 /* Hero Section Styling with Background Image */
 .hero-section {
   position: relative;
@@ -465,29 +593,62 @@
 </style>
 </head>
 <body>
-   <!--Navbar!-->
-   
+
      <!--Navbar!-->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="navbar">
-      <div class="container-fluid">
-      <a href="tech.png" class="navbar-brand">Information Technology <img src="/uploads/tech.png" alt="#" width="40" height="" class="rounded-pill"></a>
-      <button class="navbar-toggler" type="button" title="button" data-bs-toggle="collapse" data-bs-target="#menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="menu">
-        <ul class="navbar-nav text-white ms-auto mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/About">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/login1">Stud-Details</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/sub-material">Sub-Material</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Img-gallery">Img-gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Contact">Contact</a></li>
-        </ul>
-      </div>
-      </div>
-    </nav>
-     
-   
+     <!-- Vibrant Gradient Navbar with Unique Animations -->
+<nav class="navbar navbar-expand-lg navbar-dark" id="vibrant-navbar">
+  <div class="container-fluid">
+    <a href="/views/tech.png" class="navbar-brand glow-on-hover">
+      <span class="logo-main">T.D.M.N.S College</span>
+      <img src="./../uploads/tech.png" alt="College Logo" width="40" class="logo-spin"/>
+      <span class="logo-sub">Information Technology</span>
+    </a>
+    <button class="navbar-toggler pulse-animation" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="menu">
+      <ul class="navbar-nav ms-auto mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link bubble-animation" href="http://127.0.0.1:3000/">
+            <span class="nav-icon"><i class="bi bi-house-door-fill"></i></span>
+            <span class="nav-text">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bubble-animation" href="http://127.0.0.1:3000/About">
+            <span class="nav-icon"><i class="bi bi-info-circle-fill"></i></span>
+            <span class="nav-text">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bubble-animation" href="http://127.0.0.1:3000/login1">
+            <span class="nav-icon"><i class="bi bi-person-lines-fill"></i></span>
+            <span class="nav-text">Stud-Details</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bubble-animation" href="http://127.0.0.1:3000/sub-material">
+            <span class="nav-icon"><i class="bi bi-journal-bookmark-fill"></i></span>
+            <span class="nav-text">Sub-Material</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bubble-animation" href="http://127.0.0.1:3000/Img-gallery">
+            <span class="nav-icon"><i class="bi bi-images"></i></span>
+            <span class="nav-text">Img-gallery</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link bubble-animation" href="http://127.0.0.1:3000/Contact">
+            <span class="nav-icon"><i class="bi bi-telephone-fill"></i></span>
+            <span class="nav-text">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
    
       <!-- Hero Section -->
 <section id="home" class="hero-section">
@@ -648,6 +809,52 @@
 
 
 <script>
+
+// Sticky Navbar Animation
+// Add scroll effect
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('vibrant-navbar');
+    if (window.scrollY > 30) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  
+  // Add ripple effect to nav links
+  document.querySelectorAll('.bubble-animation').forEach(link => {
+    link.addEventListener('click', function(e) {
+      // Remove any existing ripples
+      const existingRipples = this.querySelectorAll('.ripple');
+      existingRipples.forEach(ripple => ripple.remove());
+      
+      // Create new ripple
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+      this.appendChild(ripple);
+      
+      // Position ripple
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+      
+      // Remove ripple after animation
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+      
+      // Close mobile menu if open
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse.classList.contains('show')) {
+        const toggler = document.querySelector('.navbar-toggler');
+        toggler.click();
+      }
+    });
+  });
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // Load saved values from localStorage
     document.getElementById('hodImg').src = localStorage.getItem('hodImg') || "/uploads/IT1.jpg";

@@ -18,43 +18,116 @@
         box-sizing: border-box;
         font-family: 'poppins', sans-serif;
     }
-    nav {
-        width: 100%;
-        position: sticky !important;
-        left: 0;
-        top: 0;
-        box-shadow: 0px 5px 8px rgba(0,0,0,.5);
-        z-index: 10;
+/* Navbar */
+ /* Navbar Animation Styles */
+  #animated-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d) !important;
+  }
+  
+  #animated-navbar.scrolled {
+    background: rgba(26, 26, 26, 0.95) !important;
+    backdrop-filter: blur(10px);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .logo-text {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-brand:hover .logo-text {
+    transform: translateY(-2px);
+  }
+  
+  .logo-img {
+    transition: all 0.3s ease;
+    margin: 0 8px;
+  }
+  
+  .navbar-brand:hover .logo-img {
+    transform: rotate(15deg) scale(1.1);
+  }
+  
+  .hover-underline {
+    position: relative;
+    padding: 8px 0;
+    margin: 0 10px;
+  }
+  
+  .hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f0ad4e;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  
+  .hover-underline:hover::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: #f0ad4e !important;
+    transform: translateY(-2px);
+  }
+  
+  .nav-link i {
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-link:hover i {
+    transform: scale(1.2);
+  }
+  
+  /* Mobile menu animation */
+  @media (max-width: 992px) {
+    #menu {
+      animation: slideDown 0.5s ease forwards;
+      transform-origin: top;
     }
-    .navbar-brand {
-        font-weight: 600;
+    
+    .nav-item {
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
     }
-    .nav-link {
-        color: white !important;
-        border-bottom: 1px solid transparent;
-    }
-    .nav-link:hover {
-        border-bottom: 2px solid red;
-    }
-    .card {
-        box-shadow: black;
-    }
-    .card-hover {
-        transition: transform 0.3s;
-    }
-    .card-hover:hover {
-        transform: scale(1.05);
-    }
-    .marquee {
-        background-color: #ff6b6b;
-        color: #fff;
-        padding: 15px;
-        font-size: 1.2em;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 20px;
-    }
-    .carousel-item img {
+    
+    .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    .nav-item:nth-child(5) { animation-delay: 0.5s; }
+    .nav-item:nth-child(6) { animation-delay: 0.6s; }
+  }
+  
+  @keyframes slideDown {
+    from { transform: scaleY(0); opacity: 0; }
+    to { transform: scaleY(1); opacity: 1; }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Carousel */
+  .carousel-item img {
         transition: transform 3s ease;
         height: 475px;
     }
@@ -208,24 +281,54 @@
 </head>
 <body>
    <!--Navbar!-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="navbar">
-      <div class="container-fluid">
-      <a href="/views/tech.png" class="navbar-brand">T.D.M.N.S College <img src="./../uploads/tech.png"alt="" width="40" class="rounded-pill"/>  Information Technology</a>
-      <button class="navbar-toggler" type="button" title="button" data-bs-toggle="collapse" data-bs-target="#menu">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-center" id="menu">
-        <ul class="navbar-nav text-white ms-auto mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/About">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/login1">Stud-Details</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/sub-material">Sub-Material</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Img-gallery">Img-gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:3000/Contact">Contact</a></li>
-        </ul>
-      </div>
-      </div>
-    </nav>
+   <!-- Navbar with Animation Effects -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white" id="animated-navbar">
+  <div class="container-fluid">
+    <a href="/views/tech.png" class="navbar-brand">
+      <span class="logo-text">T.D.M.N.S College</span>
+      <img src="./../uploads/tech.png" alt="College Logo" width="40" class="rounded-pill logo-img"/>
+      <span class="logo-text">Information Technology</span>
+    </a>
+    <button class="navbar-toggler" type="button" title="Menu Button" data-bs-toggle="collapse" data-bs-target="#menu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="menu">
+      <ul class="navbar-nav ms-auto mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link hover-underline" href="http://127.0.0.1:3000/">
+            <i class="bi bi-house-door-fill me-1"></i>Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hover-underline" href="http://127.0.0.1:3000/About">
+            <i class="bi bi-info-circle-fill me-1"></i>About
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hover-underline" href="http://127.0.0.1:3000/login1">
+            <i class="bi bi-person-lines-fill me-1"></i>Stud-Details
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hover-underline" href="http://127.0.0.1:3000/sub-material">
+            <i class="bi bi-journal-bookmark-fill me-1"></i>Sub-Material
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hover-underline" href="http://127.0.0.1:3000/Img-gallery">
+            <i class="bi bi-images me-1"></i>Img-gallery
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link hover-underline" href="http://127.0.0.1:3000/Contact">
+            <i class="bi bi-telephone-fill me-1"></i>Contact
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
     
     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
         <div class="carousel-inner" id="carouselContainer">
@@ -328,6 +431,28 @@
     </footer>
 
     <script>
+
+ // Add scroll effect to navbar
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('animated-navbar');
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+  
+  // Close mobile menu when clicking a link
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const navbarCollapse = document.querySelector('.navbar-collapse');
+      if (navbarCollapse.classList.contains('show')) {
+        const toggler = document.querySelector('.navbar-toggler');
+        toggler.click();
+      }
+    });
+  });
+
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize data from localStorage or with default values
             let studentData = JSON.parse(localStorage.getItem("studentData")) || [

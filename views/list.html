@@ -265,8 +265,8 @@
             <!-- <button title="Admin Access" class="lock-button" id="staff-login-btn">
               <i class="fas fa-solid fa-lock"></i> 
             </button> -->
-            <button title="Lock Admin Access" class="lock-button" id="staff-logout-btn">
-                <a href="http://127.0.0.1:3000"><i class="fas fa-solid fa-lock-open"></i></a>
+            <button  title="Lock Admin Access" class="lock-button" id="staff-logout-btn">
+                <i class="fas fa-solid fa-lock-open"></i>
             </button>
           </div>
 <!-- View Modal -->
@@ -382,7 +382,10 @@
 
 
 <script>
-
+// Function to handle staff logout
+ document.getElementById('staff-logout-btn').addEventListener('click', () => {
+    window.location.href = "http://127.0.0.1:3000";
+  });
 
 
 function viewDetails(element) {
